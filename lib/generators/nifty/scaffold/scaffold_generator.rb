@@ -66,7 +66,7 @@ module Nifty
       end
 
       def add_gems
-        add_gem "mocha", :group => :test
+        #add_gem "mocha", :group => :test
       end
 
       def create_model

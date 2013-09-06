@@ -1,4 +1,4 @@
-  it "destroy action should destroy model and redirect to index action" do
+  it 'destroy action should destroy model and redirect to index action' do
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     delete :destroy, id: <%= instance_name %>.id
     expect(response).to redirect_to(<%= items_url %>)

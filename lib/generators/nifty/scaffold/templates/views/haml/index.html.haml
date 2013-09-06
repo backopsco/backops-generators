@@ -1,4 +1,4 @@
-- title "<%= plural_name.titleize %>"
+%h2 <%= plural_name.titleize %>
 
 %table
   %thead
@@ -25,5 +25,5 @@
 %p= paginate @<%= instances_name %>
 
 <%- if actions? :new -%>
-%p= link_to "New <%= singular_name.titleize %>", <%= item_path action: :new %>, class: 'btn btn-small'
+%p= link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-small'
 <%- end -%>

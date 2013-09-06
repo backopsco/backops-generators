@@ -1,9 +1,10 @@
 = form_for <%= item_path :instance_variable => true %> do |f|
   = f.error_messages
   <%- for attribute in model_attributes -%>
-  .field
+  .form-group
     = f.label :<%= attribute.name %>
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
+    .control
+      = f.<%= attribute.field_type %> :<%= attribute.name %>
   <%- end -%>
   .actions
-    = f.submit, class: 'btn btn-small'
+    = f.submit, class: 'button'

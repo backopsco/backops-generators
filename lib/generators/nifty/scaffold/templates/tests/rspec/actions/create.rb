@@ -1,11 +1,11 @@
-  it "create action should render new template when model is invalid" do
+  it 'create action should render new template when model is invalid' do
     <%= instance_name %> = FactoryGirl.build(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { false }
     post :create, <%= instance_name %>: <%= instance_name %>.attributes.reject {|k,v| ['id'].include?(k)}
     expect(response).to render_template(:new)
   end
 
-  it "create action should redirect when model is valid" do
+  it 'create action should redirect when model is valid' do
     <%= instance_name %> = FactoryGirl.build(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { true }
     post :create, <%= instance_name %>: <%= instance_name %>.attributes.reject {|k,v| ['id'].include?(k)}
