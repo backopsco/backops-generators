@@ -22,7 +22,7 @@
         %td= link_to 'Destroy', <%= item_path %>, confirm: 'Are you sure?', method: :delete
         <%- end -%>
 
-%p= paginate @<%= instances_name %>
+%p= will_paginate @<%= instances_name %>
 
 <%- if actions? :new -%>
 %p= link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-small'
