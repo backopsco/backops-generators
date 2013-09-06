@@ -17,7 +17,8 @@ module Nifty
       class_option :skip_controller, :desc => 'Don\'t generate controller, helper, or views.', :type => :boolean
       class_option :invert, :desc => 'Generate all controller actions except these mentioned.', :type => :boolean
       class_option :namespace_model, :desc => 'If the resource is namespaced, include the model in the namespace.', :type => :boolean
-      class_option :haml, :desc => 'Generate HAML views instead of ERB.', :type => :boolean
+      class_option :haml,     :desc => 'Generate HAML views instead of ERB.', :type => :boolean
+      class_option :jbuilder, :desc => 'Generate HAML views & jbuilder instead of ERB.', :type => :boolean
 
       class_option :testunit, :desc => 'Use test/unit for test files.', :group => 'Test framework', :type => :boolean
       class_option :rspec, :desc => 'Use RSpec for test files.', :group => 'Test framework', :type => :boolean
@@ -100,7 +101,7 @@ module Nifty
             end
           end
 
-          if form_partial?
+          if form_partial? && view_language != 'jbuilder'
             template "views/#{view_language}/_form.html.#{view_language}", "app/views/#{plural_name}/_form.html.#{view_language}"
           end
 
@@ -272,7 +273,13 @@ module Nifty
       end
 
       def view_language
-        options.haml? ? 'haml' : 'erb'
+        if options.haml?
+          'haml'
+        elsif options.jbuilder?
+          'jbuilder'
+        else
+          'erb'
+        end
       end
 
       def test_framework
