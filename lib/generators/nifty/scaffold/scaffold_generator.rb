@@ -97,7 +97,12 @@ module Nifty
 
           controller_actions.each do |action|
             if %w[index show new edit].include?(action) # Actions with templates
-              template "views/#{view_language}/#{action}.html.#{view_language}", "app/views/#{plural_name}/#{action}.html.#{view_language}"
+              if view_language == 'jbuilder'
+                template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
+                template "views/haml/#{action}.html.haml", "app/views/#{plural_name}/#{action}.html.haml"
+              else
+                template "views/#{view_language}/#{action}.html.#{view_language}", "app/views/#{plural_name}/#{action}.html.#{view_language}"
+              end
             end
           end
 
