@@ -25,5 +25,5 @@
 %p= will_paginate @<%= instances_name %>
 
 <%- if actions? :new -%>
-%p= link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-small'
+%p= link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'button'
 <%- end -%>
