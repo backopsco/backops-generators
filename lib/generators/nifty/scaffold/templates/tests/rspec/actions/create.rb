@@ -24,6 +24,6 @@
     <%= instance_name %> = FactoryGirl.build(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { true }
     post :create, <%= instance_name %>: <%= instance_name %>.attributes.reject {|k,v| ['id'].include?(k)}, format: :json
-    expect(response.status.to_i).to eq 200)
+    expect(response.status.to_i).to eq 200
   end
 <% end %>

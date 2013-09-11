@@ -17,13 +17,13 @@
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { false }
     put :update, id: <%= instance_name %>.id, <%= instance_name %>: <%= instance_name %>.attributes.reject {|k,v| ['id'].include?(k)}, format: :json
-    expect(response.status.to_i).to eq 400)
+    expect(response.status.to_i).to eq 400
   end
 
   it 'update action should redirect when model is valid' do
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { true }
     put :update, id: <%= instance_name %>.id, <%= instance_name %>: <%= instance_name %>.attributes.reject {|k,v| ['id'].include?(k)}, format: :json
-    expect(response.status.to_i).to eq 200)
+    expect(response.status.to_i).to eq 200
   end
 <% end %>
