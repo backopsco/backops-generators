@@ -197,7 +197,7 @@ module Nifty
           else
             "<%= render \"form\" %>"
           end
-        else
+        elsif view_language != 'jbuilder'
           read_template("views/#{view_language}/_form.html.#{view_language}")
         end
       end
