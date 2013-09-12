@@ -5,3 +5,5 @@ doc
 tmp/**/*
 Gemfile.lock
 .bundle
+.DS_Store
+
