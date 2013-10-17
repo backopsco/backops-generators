@@ -1,15 +1,31 @@
-<% if view_language != 'jbuilder' %>
+<%- if view_language != 'jbuilder' -%>
   def create
     @<%= instance_name %> = <%= class_name %>.new(params[:<%= instance_name %>])
+    @<%= instance_name %> = current_user.<%= instances_name %>.new(params[:<%= instance_name %>])
+    @task = current_user.tasks.find(params[:id])
     if @<%= instance_name %>.save
       redirect_to <%= item_url %>, notice: 'Successfully created <%= class_name.underscore.humanize.downcase %>.'
     else
       render :new
     end
   end
-<% else %>
+<%- elsif view_language == 'ember_api' -%>
   def create
-    @<%= instance_name %> = <%= class_name %>.find(params[:id])
+    @<%= instance_name %> = current_user.<%= instances_name %>.build(allowed_params)
+    respond_to do |format|
+      if @<%= instance_name %>.save
+        format.json { render json: @<%= instance_name %>, serializer: <%= class_name %>Serializer }
+        format.html { redirect_to <%= item_url %>, notice: 'Successfully created <%= instance_name %>.' }
+      else
+        format.json { render json: @<%= instance_name %>.errors, status: 422 }
+        format.html { render action: :index }
+      end
+    end
+  end
+<%- else -%>
+  def create
+    @<%= instance_name %> = <%= class_name %>.new(params[:<%= instance_name %>])
+    @<%= instance_name %> = current_user.<%= instances_name %>.new(params[:<%= instance_name %>])
     respond_to do |format|
       if @<%= instance_name %>.update_attributes(params[:<%= instance_name %>])
         format.html { redirect_to <%= item_url %>, notice: 'Successfully created <%= class_name.underscore.humanize.downcase %>.' }
@@ -18,4 +34,4 @@
       end
     end
   end
-<% end %>
+<%- end -%>

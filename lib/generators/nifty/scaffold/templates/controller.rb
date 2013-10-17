@@ -1,5 +1,8 @@
 class <%= plural_class_name %>Controller < ApplicationController
+  layout 'v2/application'
   helper_method :sort_column, :sort_direction
+  skip_before_filter :setup_permissions
+
   <%= controller_methods :actions %>
 
   private

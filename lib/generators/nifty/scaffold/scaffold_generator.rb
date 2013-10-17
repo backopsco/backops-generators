@@ -19,6 +19,7 @@ module Nifty
       class_option :namespace_model, :desc => 'If the resource is namespaced, include the model in the namespace.', :type => :boolean
       class_option :haml,     :desc => 'Generate HAML views instead of ERB.', :type => :boolean
       class_option :jbuilder, :desc => 'Generate HAML views & jbuilder instead of ERB.', :type => :boolean
+      class_option :ember_api, :desc => 'Generate HAML views & ActiveModel serializer instead of ERB.', :type => :boolean
 
       class_option :testunit, :desc => 'Use test/unit for test files.', :group => 'Test framework', :type => :boolean
       class_option :rspec, :desc => 'Use RSpec for test files.', :group => 'Test framework', :type => :boolean
@@ -103,10 +104,17 @@ module Nifty
               else
                 template "views/#{view_language}/#{action}.html.#{view_language}", "app/views/#{plural_name}/#{action}.html.#{view_language}"
               end
+            elsif view_language == 'jbuilder' &&  %w[create update].include?(action)
+              template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
             end
           end
 
-          if form_partial? && view_language != 'jbuilder'
+          if view_language == 'ember_api'
+            template "views/haml/index.html.haml", "app/views/#{plural_name}/index.html.haml"
+            create_serializer
+          end
+
+          if form_partial? && view_language != 'jbuilder' && view_language != 'ember_api'
             template "views/#{view_language}/_form.html.#{view_language}", "app/views/#{plural_name}/_form.html.#{view_language}"
           end
 
@@ -125,6 +133,10 @@ module Nifty
       end
 
       private
+
+      def create_serializer
+        #
+      end
 
       def form_partial?
         actions? :new, :edit
@@ -282,6 +294,8 @@ module Nifty
           'haml'
         elsif options.jbuilder?
           'jbuilder'
+        elsif options.ember_api?
+          'ember_api'
         else
           'erb'
         end
