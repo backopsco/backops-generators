@@ -96,22 +96,22 @@ module Nifty
 
           #template 'helper.rb', "app/helpers/#{plural_name}_helper.rb"
 
-          controller_actions.each do |action|
-            if %w[index show new edit].include?(action) # Actions with templates
-              if view_language == 'jbuilder'
-                template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
-                template "views/haml/#{action}.html.haml", "app/views/#{plural_name}/#{action}.html.haml"
-              else
-                template "views/#{view_language}/#{action}.html.#{view_language}", "app/views/#{plural_name}/#{action}.html.#{view_language}"
-              end
-            elsif view_language == 'jbuilder' &&  %w[create update].include?(action)
-              template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
-            end
-          end
-
           if view_language == 'ember_api'
             template "views/haml/index.html.haml", "app/views/#{plural_name}/index.html.haml"
             create_serializer
+          else
+            controller_actions.each do |action|
+              if %w[index show new edit].include?(action) # Actions with templates
+                if view_language == 'jbuilder'
+                  template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
+                  template "views/haml/#{action}.html.haml", "app/views/#{plural_name}/#{action}.html.haml"
+                else
+                  template "views/#{view_language}/#{action}.html.#{view_language}", "app/views/#{plural_name}/#{action}.html.#{view_language}"
+                end
+              elsif view_language == 'jbuilder' &&  %w[create update].include?(action)
+                template "views/#{view_language}/#{action}.json.#{view_language}", "app/views/#{plural_name}/#{action}.json.#{view_language}"
+              end
+            end
           end
 
           if form_partial? && view_language != 'jbuilder' && view_language != 'ember_api'
