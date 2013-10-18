@@ -14,7 +14,7 @@
   end
 <%- end -%>
 
-<%- if view_language == 'jbuilder' -%>
+<%- if view_language == 'jbuilder' || view_language == 'ember_api' -%>
   it 'update action should render edit template when model is invalid' do
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     <%= class_name %>.any_instance.stub(:valid?) { false }

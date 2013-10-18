@@ -6,7 +6,7 @@
   end
 <%- end -%>
 
-<%- if view_language == 'jbuilder' -%>
+<%- if view_language == 'jbuilder' || view_language == 'ember_api' -%>
   it 'index action should render index template' do
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     get :index, format: :json

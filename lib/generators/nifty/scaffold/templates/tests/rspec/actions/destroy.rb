@@ -8,7 +8,7 @@
   end
 <%- end -%>
 
-<%- if view_language != 'jbuilder' -%>
+<%- if view_language != 'jbuilder' || view_language == 'ember_api' -%>
   it 'destroy action should destroy model and redirect to index action' do
     <%= instance_name %> = FactoryGirl.create(:<%= instance_name %>)
     delete :destroy, id: <%= instance_name %>.id, format: :json
