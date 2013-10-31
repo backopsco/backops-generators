@@ -1,7 +1,11 @@
 %h2 New <%= singular_name.titleize %>
 
-<%= render_form %>
+
+= form_for @<%= instance_name %>, url: <%= items_path :instance_variable => true %> do |f|
+  = render partial: 'form', locals: {f: f}
+  .actions
+    = f.submit 'Update' , class: 'btn btn-default'
 
 <%- if action? :index -%>
-%p= link_to 'Back to List', <%= items_path %>, class: 'button'
+%p= link_to 'Back to List', <%= items_path %>, class: 'btn btn-default'
 <%- end -%>

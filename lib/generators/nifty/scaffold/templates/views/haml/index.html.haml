@@ -1,10 +1,34 @@
-%h2 <%= plural_name.titleize %>
+<%% content_for :breadcrumb do %%>
+%li.active
+  Home
+<%% end %%>
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag <%= items_path %>, :method => 'get', :id => "<%= instances_name %>_search" do
+      <%- for attribute in model_attributes -%>
+      %label <%= attribute %>
+      = text_field_tag :<%= attribute %>, params[:<%= attribute %>]
 
-%table
+      = submit_tag "Search", :name => nil, class: 'btn btn-primary'
+
+%div.col-md-8
+  %h1 <%= plural_name.titleize %>
+
+<%- if actions? :new -%>
+%div.col-md-4
+  = link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
+<%- end -%>
+
+%table class: "table table-bordered table-striped"
   %thead
     %tr
       <%- for attribute in model_attributes -%>
+      <%- if attribute == model_attributes.first %>
+      %th
+        = sortable '<%= attribute.human_name %>', '<%= attribute.human_name.titleize %>'
+      <%- else -%>
       %th <%= attribute.human_name %>
+      <%- end -%>
       <%- end -%>
   %tbody
     - for <%= instance_name %> in @<%= instances_name %>
@@ -19,11 +43,7 @@
         %td= link_to 'Edit', <%= item_path :action => :edit %>
         <%- end -%>
         <%- if action? :destroy -%>
-        %td= link_to 'Destroy', <%= item_path %>, confirm: 'Are you sure?', method: :delete
+        %td= link_to 'Destroy', <%= item_path %>, data: { confirm: 'Are you sure?' }, method: :delete
         <%- end -%>
 
 %p= will_paginate @<%= instances_name %>
-
-<%- if actions? :new -%>
-%p= link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'button'
-<%- end -%>

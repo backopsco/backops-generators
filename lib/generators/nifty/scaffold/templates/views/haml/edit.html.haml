@@ -1,14 +1,17 @@
 %h2 Edit <%= singular_name.titleize %>
 
-<%= render_form %>
+= form_for @<%= instance_name %>, url: <%= item_path :instance_variable => true %> do |f|
+  = render partial: 'form', locals: {f: f}
+  .actions
+    = f.submit 'Update' , class: 'btn btn-default'
 
 <%- if actions? :show, :index -%>
 %p
   <%- if action? :show -%>
-  = link_to 'Show', <%= item_path :instance_variable => true %>, class: 'button'
+  = link_to 'Show', <%= item_path :instance_variable => true %>, class: 'btn btn-default'
   |
   <%- end -%>
   <%- if action? :index -%>
-  = link_to 'View All', <%= items_path %>, class: 'button'
+  = link_to 'View All', <%= items_path %>, class: 'btn btn-default'
   <%- end -%>
 <%- end -%>

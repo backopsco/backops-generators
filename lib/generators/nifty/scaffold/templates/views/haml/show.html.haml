@@ -8,13 +8,13 @@
 
 %p
   <%- if action? :edit -%>
-  = link_to 'Edit', <%= item_path action: :edit, instance_variable: true %>, class: 'button'
+  = link_to 'Edit', <%= item_path action: :edit, instance_variable: true %>, class: 'btn btn-default'
   |
   <%- end -%>
   <%- if action? :destroy -%>
-  = link_to 'Destroy', <%= item_path :instance_variable => true %>, confirm: 'Are you sure?', method: :delete, class: 'button'
+  = link_to 'Destroy', <%= item_path :instance_variable => true %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
   |
   <%- end -%>
   <%- if action? :index -%>
-  = link_to 'View All', <%= items_path %>, class: 'button'
+  = link_to 'View All', <%= items_path %>, class: 'btn btn-default'
   <%- end -%>
