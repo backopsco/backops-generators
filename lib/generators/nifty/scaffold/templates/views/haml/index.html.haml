@@ -19,7 +19,7 @@
   = link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
 <%- end -%>
 
-%table class: "table table-bordered table-striped"
+%table.table.table-striped.table-hover
   %thead
     %tr
       <%- for attribute in model_attributes -%>
