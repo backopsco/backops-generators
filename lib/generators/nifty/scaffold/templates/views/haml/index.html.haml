@@ -8,7 +8,7 @@
       <%- for attribute in model_attributes -%>
       %label <%= attribute %>
       = text_field_tag :<%= attribute %>, params[:<%= attribute %>]
-
+      <%- end -%>
       = submit_tag "Search", :name => nil, class: 'btn btn-primary'
 
 %div.col-md-8
