@@ -11,11 +11,11 @@
       = submit_tag "Search", :name => nil, class: 'btn btn-primary'
 
 %div.col-md-8
-  %h1 <%= plural_name.titleize %>
+  %h1 <%= display_plural_name.titleize %>
 
 <%- if actions? :new -%>
 %div.col-md-4
-  = link_to 'New <%= singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
+  = link_to 'New <%= display_singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
 <%- end -%>
 
 %table.table.table-striped.table-hover

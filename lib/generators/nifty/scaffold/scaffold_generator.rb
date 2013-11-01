@@ -162,6 +162,18 @@ module Nifty
         scaffold_name.underscore.pluralize
       end
 
+      def display_singular_name
+        if @namespace_model
+          scaffold_name.underscore
+        else
+          scaffold_name.split('::').last.underscore
+        end
+      end
+
+      def display_plural_name
+        display_singular_name.pluralize
+      end
+
       def table_name
         if scaffold_name.include?('::') && @namespace_model
           plural_name.gsub('/', '_')

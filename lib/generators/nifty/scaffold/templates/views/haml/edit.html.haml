@@ -1,4 +1,4 @@
-%h2 Edit <%= singular_name.titleize %>
+%h2 Edit <%= display_singular_name.titleize %>
 
 = form_for @<%= instance_name %>, url: <%= item_path :instance_variable => true %> do |f|
   = render partial: 'form', locals: {f: f}
