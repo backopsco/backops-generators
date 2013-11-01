@@ -4,7 +4,7 @@
 = form_for @<%= instance_name %>, url: <%= items_path %> do |f|
   = render partial: 'form', locals: {f: f}
   .actions
-    = f.submit 'Update' , class: 'btn btn-default'
+    = f.submit 'Create' , class: 'btn btn-default'
 
 <%- if action? :index -%>
 %p= link_to 'Back to List', <%= items_path %>, class: 'btn btn-default'

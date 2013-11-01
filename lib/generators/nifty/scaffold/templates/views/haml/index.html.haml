@@ -5,9 +5,13 @@
   .admin_filters
     = form_tag <%= items_path %>, method: 'get', id: "<%= instances_name %>_search" do
       <%- for attribute in model_attributes -%>
-      %label <%= attribute.human_name %>
-      = text_field_tag :<%= attribute.name %>, params[:<%= attribute.name %>]
+      .form-group
+        %label <%= attribute.human_name %>
+        .control
+          = text_field_tag :<%= attribute.name %>, params[:<%= attribute.name %>]
       <%- end -%>
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
       = submit_tag "Search", name: nil, class: 'btn btn-primary'
 
 %div.col-md-8
@@ -42,7 +46,10 @@
         %td= link_to 'Edit', <%= item_path :action => :edit %>
         <%- end -%>
         <%- if action? :destroy -%>
-        %td= link_to 'Destroy', <%= item_path %>, data: { confirm: 'Are you sure?' }, method: :delete
+        - if <%= instance_name %>.active
+          %td
+            = link_to <%= item_path %>, data: { confirm: 'Are you sure?' }, method: :delete do
+              %span.glyphicon.glyphicon-remove
         <%- end -%>
 
 %p= will_paginate @<%= instances_name %>
