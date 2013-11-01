@@ -1,7 +1,6 @@
-<%% content_for :breadcrumb do %%>
-%li.active
-  Home
-<%% end %%>
+- content_for :breadcrumb do
+  %li.active
+    Home
 - content_for :sidemenu do
   .admin_filters
     = form_tag <%= items_path %>, :method => 'get', :id => "<%= instances_name %>_search" do
