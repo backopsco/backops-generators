@@ -8,7 +8,7 @@
 <%- if actions? :show, :index -%>
 %p
   <%- if action? :show -%>
-  = link_to 'Show', <%= item_path :instance_variable => true %>, class: 'btn btn-default'
+  = link_to 'Show', <%= item_path instance_variable: true %>, class: 'btn btn-default'
   |
   <%- end -%>
   <%- if action? :index -%>

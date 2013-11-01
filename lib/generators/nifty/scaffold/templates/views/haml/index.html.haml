@@ -3,12 +3,12 @@
     Home
 - content_for :sidemenu do
   .admin_filters
-    = form_tag <%= items_path %>, :method => 'get', :id => "<%= instances_name %>_search" do
+    = form_tag <%= items_path %>, method: 'get', id: "<%= instances_name %>_search" do
       <%- for attribute in model_attributes -%>
       %label <%= attribute.human_name %>
       = text_field_tag :<%= attribute.name %>, params[:<%= attribute.name %>]
       <%- end -%>
-      = submit_tag "Search", :name => nil, class: 'btn btn-primary'
+      = submit_tag "Search", name: nil, class: 'btn btn-primary'
 
 %div.col-md-8
   %h1 <%= display_plural_name.titleize %>
