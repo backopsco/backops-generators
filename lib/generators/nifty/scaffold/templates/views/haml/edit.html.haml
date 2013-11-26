@@ -4,14 +4,15 @@
   = render partial: 'form', locals: {f: f}
   .actions
     = f.submit 'Update' , class: 'btn btn-default'
-
-<%- if actions? :show, :index -%>
-%p
-  <%- if action? :show -%>
-  = link_to 'Show', <%= item_path instance_variable: true %>, class: 'btn btn-default'
-  |
-  <%- end -%>
-  <%- if action? :index -%>
-  = link_to 'View All', <%= items_path %>, class: 'btn btn-default'
-  <%- end -%>
-<%- end -%>
+  .
+  %ul.actions.list-inline
+    %li
+      = f.submit 'Update' , class: 'btn btn-default'
+    <%- if action? :index -%>
+    %li
+      = link_to 'Back to List', <%= items_path %>, class: 'btn btn-default'
+    <%- end -%>
+    <%- if action? :show -%>
+    %li
+      = link_to 'Show', <%= item_path instance_variable: true %>, class: 'btn btn-default'
+    <%- end -%>

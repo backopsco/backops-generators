@@ -1,11 +1,14 @@
 class <%= plural_class_name %>Controller < ApplicationController
-  layout 'v2/application'
   helper_method :sort_column, :sort_direction
-  skip_before_filter :setup_permissions
 
   <%= controller_methods :actions %>
 
   private
+  allowed_params
+
+    def allowed_params
+      params.require(:<%= instance_name %>).permit(<%= model_attributes.map.to_sym %> )
+    end
 
     def sort_column
       <%= class_name %>.column_names.include?(params[:sort]) ? params[:sort] : '<%= model_attributes.first.name %>'

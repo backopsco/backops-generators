@@ -4,8 +4,7 @@ describe <%= plural_class_name %>Controller do
   render_views
 
   before do
-    controller.stub(:user_has_permission?) { true }
-    @user = FactoryGirl.create(:controller)
+    @user = FactoryGirl.create(:user)
     sign_in @user
   end
 

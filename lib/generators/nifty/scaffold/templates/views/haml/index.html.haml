@@ -14,13 +14,14 @@
       = hidden_field_tag :sort, params[:sort]
       = submit_tag "Search", name: nil, class: 'btn btn-primary'
 
-%div.col-md-8
-  %h1 <%= display_plural_name.titleize %>
+.row
+  %div.col-md-5.span5
+    %h1 <%= display_plural_name.titleize %>
 
-<%- if actions? :new -%>
-%div.col-md-4
-  = link_to 'New <%= display_singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
-<%- end -%>
+  <%- if actions? :new -%>
+  %div.col-md-4.span4
+    = link_to 'New <%= display_singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
+  <%- end -%>
 
 %table.table.table-striped.table-hover
   %thead
