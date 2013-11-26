@@ -4,10 +4,9 @@ class <%= plural_class_name %>Controller < ApplicationController
   <%= controller_methods :actions %>
 
   private
-  allowed_params
 
     def allowed_params
-      params.require(:<%= instance_name %>).permit(<%= model_attributes.map.to_sym %> )
+      params.require(:<%= instance_name %>).permit(<%= model_attributes.map{|ma| ":#{ma}"} %> )
     end
 
     def sort_column
