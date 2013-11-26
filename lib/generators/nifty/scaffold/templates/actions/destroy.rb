@@ -1,4 +1,4 @@
-<% if view_language != 'jbuilder' %>
+<%- if view_language != 'jbuilder' -%>
   def destroy
     @<%= instance_name %> = <%= class_name %>.find(params[:id])
     @<%= instance_name %> = current_user.<%= instances_name %>.find(params[:id])
@@ -15,7 +15,7 @@
       format.html { redirect_to <%= items_url %>, notice: 'Successfully destroyed <%= instance_name %>.' }
     end
   end
-<% else %>
+<%- else -%>
   def destroy
     @<%= instance_name %> = <%= class_name %>.find(params[:id])
     @<%= instance_name %> = current_user.<%= instances_name %>.find(params[:id])
@@ -24,4 +24,4 @@
       format.html { redirect_to <%= items_url %>, notice: 'Successfully destroyed <%= class_name.underscore.humanize.downcase %>.' }
     end
   end
-<% end %>
+<%- end -%>
