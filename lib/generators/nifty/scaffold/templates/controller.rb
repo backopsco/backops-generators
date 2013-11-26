@@ -6,7 +6,7 @@ class <%= plural_class_name %>Controller < ApplicationController
   private
 
     def allowed_params
-      params.require(:<%= instance_name %>).permit(<%= model_attributes.map{|ma| ":#{ma}"} %> )
+      params.require(:<%= instance_name %>).permit(<%= model_attributes.map{|ma| ':' + ma.name }.join(', ') %> )
     end
 
     def sort_column
