@@ -1,6 +1,6 @@
 <%- if view_language != 'jbuilder' -%>
   def create
-    @<%= instance_name %> = <%= class_name %>.new(params[:<%= instance_name %>])
+    @<%= instance_name %> = <%= class_name %>.new(allowed_params)
     @<%= instance_name %> = current_user.<%= instances_name %>.new(params[:<%= instance_name %>])
     if @<%= instance_name %>.save
       redirect_to <%= item_url %>, notice: 'Successfully created <%= class_name.underscore.humanize.downcase %>.'
@@ -23,7 +23,7 @@
   end
 <%- else -%>
   def create
-    @<%= instance_name %> = <%= class_name %>.new(params[:<%= instance_name %>])
+    @<%= instance_name %> = <%= class_name %>.new(allowed_params)
     @<%= instance_name %> = current_user.<%= instances_name %>.new(params[:<%= instance_name %>])
     respond_to do |format|
       if @<%= instance_name %>.update_attributes(params[:<%= instance_name %>])
