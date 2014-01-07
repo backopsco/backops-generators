@@ -1,4 +1,4 @@
-- content_for :breadcrumb do
+- content_for :crumbs do
   %li.active
     Home
 - content_for :sidemenu do
@@ -16,11 +16,11 @@
 
 .row
   %div.col-md-5.span5
-    %h1 <%= display_plural_name.titleize %>
+    %h2 <%= display_plural_name.titleize %>
 
   <%- if actions? :new -%>
   %div.col-md-4.span4
-    = link_to 'New <%= display_singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-default pull-right'
+    = link_to 'New <%= display_singular_name.titleize %>', <%= item_path action: :new %>, class: 'btn btn-primary pull-right'
   <%- end -%>
 
 %table.table.table-striped.table-hover
