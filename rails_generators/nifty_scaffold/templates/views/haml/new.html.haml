@@ -1,7 +1,10 @@
 - title "New <%= singular_name.titleize %>"
 
 <%= render_form %>
-
-<%- if action? :index -%>
-%p= link_to "Back to List", <%= plural_name %>_path
-<%- end -%>
+  %hr
+  .form-footer.col-md-12
+    .pull-right
+      <%- if action? :index -%>
+      = link_to "Back", <%= plural_name %>_path, class: 'btn'
+      <%- end -%>
+      = f.submit 'Create', class: 'btn btn-success'

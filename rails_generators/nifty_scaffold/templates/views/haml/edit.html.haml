@@ -1,14 +1,10 @@
 - title "Edit <%= singular_name.titleize %>"
 
 <%= render_form %>
-
-<%- if actions? :show, :index -%>
-%p
-  <%- if action? :show -%>
-  = link_to "Show", <%= singular_name %>_path(@<%= singular_name %>)
-  |
-  <%- end -%>
-  <%- if action? :index -%>
-  = link_to "View All", <%= plural_name %>_path
-  <%- end -%>
-<%- end -%>
+  %hr
+  .form-footer.col-md-12
+    .pull-right
+      <%- if action? :index -%>
+      = link_to "Back", <%= plural_name %>_path, class: 'btn'
+      <%- end -%>
+      = f.submit 'Update', class: 'btn btn-success'

@@ -1,10 +1,13 @@
-- form_for @<%= singular_name %> do |f|
+- form_for @<%= singular_name %>, html: {class: 'form-horizontal backops-admin-form'} do |f|
   = f.error_messages
   <%- for attribute in attributes -%>
-  %p
+  .form-group
     = f.label :<%= attribute.name %>
-    %br
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
+    .col-md-5
+      <%- if attribute.name.match(/\w*_id\z/) -%>
+      = f.select :<%= attribute.name %>, <%= attribute.name %>, { include_blank: true, prompt: 'Select <%= attribute.name %>' }, class: 'form-control'
+      <%- else -%>
+      = f.<%= attribute.field_type %> :<%= attribute.name %>
+      <%- end -%>
+    = error_for(@<%= singular_name %>, :<%= attribute.name %>)
   <%- end -%>
-  %p
-    = f.submit

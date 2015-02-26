@@ -2,8 +2,8 @@
 
 <%% form_for @<%= singular_name %> do |f| %>
   <%= render_form %>
-  <p><%%= f.submit, 'Create', :class => 'button' %></p>
+  <p><%%= f.submit, 'Create', class: 'button' %></p>
 <%% end %>
 
 <%- if action? :index -%>
-<p><%%= link_to "Back to List", <%= plural_name %>_path, :class => 'button' %></p>
+<p><%%= link_to "Back to List", <%= plural_name %>_path, class: 'button' %></p>

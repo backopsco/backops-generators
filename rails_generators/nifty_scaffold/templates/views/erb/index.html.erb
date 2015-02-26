@@ -18,12 +18,12 @@
       <td><%%= link_to "Edit", edit_<%= singular_name %>_path(<%= singular_name %>) %></td>
     <%- end -%>
     <%- if action? :destroy -%>
-      <td><%%= link_to "Destroy", <%= singular_name %>, :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
+      <td><%%= link_to "Destroy", <%= singular_name %>, data: { confirm: "Are you sure?" }, method: :delete %></td>
     <%- end -%>
     </tr>
   <%% end %>
 </table>
 
 <%- if action? :new -%>
-<p><%%= link_to "New <%= singular_name.titleize %>", new_<%= singular_name %>_path, :class => 'button' %></p>
+<p><%%= link_to "New <%= singular_name.titleize %>", new_<%= singular_name %>_path, class: 'button' %></p>
 <%- end -%>

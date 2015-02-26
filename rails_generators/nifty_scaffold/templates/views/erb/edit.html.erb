@@ -2,16 +2,16 @@
 
 <%% form_for @<%= singular_name %> do |f| %>
   <%= render_form %>
-  <p><%%= f.submit, 'Update', :class => 'button' %></p>
+  <p><%%= f.submit, 'Update', class: 'button' %></p>
 <%% end %>
 
 <%- if actions? :show, :index -%>
 <p>
 <%- if action? :show -%>
-  <%%= link_to "Show", @<%= singular_name %>, :class => 'button' %> |
+  <%%= link_to "Show", @<%= singular_name %>, class: 'button' %> |
 <%- end -%>
 <%- if action? :index -%>
-  <%%= link_to "View All", <%= plural_name %>_path, :class => 'button' %>
+  <%%= link_to "View All", <%= plural_name %>_path, class: 'button' %>
 <%- end -%>
 </p>
 <%- end -%>

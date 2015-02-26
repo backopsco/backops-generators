@@ -11,12 +11,12 @@
 
 <p>
 <%- if action? :edit -%>
-  <%%= link_to "Edit", edit_<%= singular_name %>_path(@<%= singular_name %>), :class => 'button' %> |
+  <%%= link_to "Edit", edit_<%= singular_name %>_path(@<%= singular_name %>), class: 'button' %> |
 <%- end -%>
 <%- if action? :destroy -%>
-  <%%= link_to "Destroy", @<%= singular_name %>, :confirm => 'Are you sure?', :method => :delete, :class => 'button' %> |
+  <%%= link_to "Destroy", @<%= singular_name %>, confirm: 'Are you sure?', method: :delete, class: 'button' %> |
 <%- end -%>
 <%- if action? :index -%>
-  <%%= link_to "View All", <%= plural_name %>_path, :class => 'button' %>
+  <%%= link_to "View All", <%= plural_name %>_path, class: 'button' %>
 <%- end -%>
 </p>

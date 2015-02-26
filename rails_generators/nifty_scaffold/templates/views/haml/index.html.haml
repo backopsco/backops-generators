@@ -1,10 +1,12 @@
 - title "<%= plural_name.titleize %>"
 
 %table
-  %tr
-    <%- for attribute in attributes -%>
-    %th <%= attribute.column.human_name %>
-    <%- end -%>
+  %thead
+    %tr
+      <%- for attribute in attributes -%>
+      %th <%= attribute.column.human_name %>
+      <%- end -%>
+  %tbody
   - for <%= singular_name %> in @<%= plural_name %>
     %tr
       <%- for attribute in attributes -%>
@@ -17,9 +19,9 @@
       %td= link_to 'Edit', edit_<%= singular_name %>_path(<%= singular_name %>)
       <%- end -%>
       <%- if action? :destroy -%>
-      %td= link_to 'Destroy', <%= singular_name %>, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', <%= singular_name %>, data: { confirm: "Are you sure?" }, method: :delete
       <%- end -%>
 
 <%- if actions? :new -%>
-%p= link_to "New <%= singular_name.titleize %>", new_<%= singular_name %>_path
+%p= link_to "New <%= singular_name.titleize %>", new_<%= singular_name %>_path, class: 'btn btn-primary'
 <%- end -%>
